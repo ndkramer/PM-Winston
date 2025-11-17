@@ -113,23 +113,32 @@ app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
  */
 async function startServer() {
   try {
-    // Test database connection before starting server
-    console.log('🔍 Testing Supabase connection...');
-    const isConnected = await testConnection();
-    
-    if (!isConnected) {
-      console.warn('⚠️  Warning: Could not establish Supabase connection');
-      console.warn('⚠️  Server will start, but database operations may fail');
-    }
-    
+    // Start server first
     app.listen(PORT, '0.0.0.0', () => {
       console.log('');
       console.log('🚀 Miro Webhook Receiver started successfully!');
-      console.log(`📡 Server listening on port ${PORT}`);
+      console.log(`📡 Server listening on port ${PORT} on all interfaces`);
       console.log(`🏥 Health check: http://localhost:${PORT}/health`);
       console.log(`📨 Webhook endpoint: http://localhost:${PORT}/webhooks/miro`);
       console.log('');
       console.log('Ready to receive Miro webhooks...');
+      
+      // Test database connection after server is running (non-blocking)
+      console.log('');
+      console.log('🔍 Testing Supabase connection...');
+      testConnection()
+        .then((isConnected) => {
+          if (isConnected) {
+            console.log('✅ Supabase connection verified');
+          } else {
+            console.warn('⚠️  Warning: Could not establish Supabase connection');
+            console.warn('⚠️  Database operations may fail');
+          }
+        })
+        .catch((err) => {
+          console.warn('⚠️  Supabase connection test error:', err.message);
+          console.warn('⚠️  Database operations may fail');
+        });
     });
     
   } catch (error) {
