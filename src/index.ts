@@ -114,10 +114,13 @@ app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
 async function startServer() {
   try {
     // Start server first
-    app.listen(PORT, '0.0.0.0', () => {
+    const server = app.listen(PORT, '0.0.0.0', () => {
+      const address = server.address();
       console.log('');
       console.log('🚀 Miro Webhook Receiver started successfully!');
-      console.log(`📡 Server listening on port ${PORT} on all interfaces`);
+      console.log(`📡 Server listening on port ${PORT} on all interfaces (0.0.0.0)`);
+      console.log(`🔧 Server address:`, address);
+      console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
       console.log(`🏥 Health check: http://localhost:${PORT}/health`);
       console.log(`📨 Webhook endpoint: http://localhost:${PORT}/webhooks/miro`);
       console.log('');

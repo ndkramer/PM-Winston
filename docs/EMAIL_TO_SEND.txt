@@ -1,0 +1,77 @@
+Subject: Request: Setup Webhook Integration for Our Miro Board
+
+Hi [Board Owner Name],
+
+I hope this email finds you well! I've built an automated system that will capture and store all activity from our Miro board for analysis and record-keeping. To make this work, I need your help setting up a webhook connection (don't worry - I'll walk you through every step!).
+
+WHAT IS A WEBHOOK?
+A webhook is like a notification system - whenever someone adds, updates, or deletes something on our Miro board, Miro will automatically send that information to our application. This helps us track changes, collaborate better, and keep a history of our board activities.
+
+STEP-BY-STEP INSTRUCTIONS:
+
+Step 1: Access the Miro Developer Portal
+1. Go to: https://developers.miro.com/
+2. Click "Sign in" (top right)
+3. Sign in with your regular Miro account
+
+Step 2: Create a Miro App (if needed)
+1. Click "My Apps" in the top menu
+2. If you already have an app, skip to Step 3
+3. Click "Create new app"
+4. Name it: "PM-Winston Integration" (or any name)
+5. Click "Create app"
+
+Step 3: Configure the Webhook
+1. In your app dashboard, click "Webhooks" in the left sidebar
+2. Click "Add webhook" or "Create webhook"
+3. Fill in the form with these EXACT details:
+
+   WEBHOOK URL (copy exactly):
+   https://pm-winston-production.up.railway.app/webhooks/miro
+
+   BOARD SELECTION:
+   - Select "Specific board"
+   - Board ID: uXjVJWWN1_Y=
+   - Or use board URL: https://miro.com/app/board/uXjVJWWN1_Y=/
+
+   EVENTS TO SUBSCRIBE (check all these boxes):
+   ✓ item:created
+   ✓ item:updated
+   ✓ item:deleted
+   ✓ board:updated
+
+   STATUS:
+   - Set to "Active" or "Enabled"
+
+4. Click "Save" or "Create webhook"
+
+Step 4: Test It
+1. Open our board: https://miro.com/app/board/uXjVJWWN1_Y=/
+2. Add a sticky note with "Testing webhook"
+3. Let me know - I'll verify it worked!
+
+TROUBLESHOOTING:
+- Double-check the webhook URL is exact (copy/paste from above)
+- Make sure the correct board is selected
+- Ensure webhook status is "Active"
+- If stuck, send me a screenshot and I'll help!
+
+SECURITY:
+- Connection is encrypted (HTTPS)
+- Only our specific board is tracked
+- Data stored securely in our private database
+- No additional personal info collected
+
+Need help? Just reply to this email or let me know if you'd like to hop on a quick call to set this up together!
+
+Thank you so much for your help with this!
+
+Best regards,
+[Your Name]
+
+---
+QUICK REFERENCE:
+Webhook URL: https://pm-winston-production.up.railway.app/webhooks/miro
+Board ID: uXjVJWWN1_Y=
+Developer Portal: https://developers.miro.com/
+
