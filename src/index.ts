@@ -6,7 +6,7 @@ import { supabase, testConnection } from './config/supabase';
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = parseInt(process.env.PORT || '3000', 10);
 
 // Middleware
 app.use(express.json());
@@ -122,7 +122,7 @@ async function startServer() {
       console.warn('⚠️  Server will start, but database operations may fail');
     }
     
-    app.listen(PORT, () => {
+    app.listen(PORT, '0.0.0.0', () => {
       console.log('');
       console.log('🚀 Miro Webhook Receiver started successfully!');
       console.log(`📡 Server listening on port ${PORT}`);
